@@ -19,7 +19,7 @@ from function_gee import reduce_region_for_collection
 
 # Configuração da página
 st.set_page_config(layout="wide")
-st.sidebar.image(r'assets\Logo.png')
+st.sidebar.image('assets/Logo.png')
 # st.sidebar.markdown('Desenvolvido por [Christhian Cunha](https://www.linkedin.com/in/christhian-santana-cunha/)')
 st.sidebar.markdown('Conheça nossas formações [AmbGEO](https://ambgeo.com/)')
 
