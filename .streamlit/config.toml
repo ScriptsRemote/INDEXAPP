@@ -1,0 +1,34 @@
+[server]
+
+# Max size, in megabytes, for files uploaded with the file_uploader.
+# Default: 200
+maxUploadSize = 1024
+
+# Max size, in megabytes, of messages that can be sent via the WebSocket
+# connection.
+# Default: 200
+maxMessageSize = 1024
+
+[theme]
+
+# Used to style primary interface elements. It's the color displayed most frequently across your app's
+# screens and components. Examples of widgets using this color are st.slider and st.checkbox.
+primaryColor = "#3E768A"
+
+# Background color for the main container.
+backgroundColor = "#ECECEC" # sepia yellow
+
+# Used as the background for most widgets. Examples of widgets with this background are st.sidebar,
+# st.text_input, st.date_input.
+secondaryBackgroundColor =  "#E4E4E4" # wheat  "#d7ab82" # yellow <-- not enough contrast
+
+# Font color for the page.
+textColor = "#040404" # grey
+
+# Font family (serif | sans serif | mono) for the page. Will not impact code areas.
+# Default: "sans serif"
+font = "sans serif"
+
+
+[global]
+dataFrameSerialization = "legacy"
