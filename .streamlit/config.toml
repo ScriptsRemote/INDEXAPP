@@ -29,6 +29,3 @@ textColor = "#040404" # grey
 # Default: "sans serif"
 font = "sans serif"
 
-
-[global]
-dataFrameSerialization = "legacy"
