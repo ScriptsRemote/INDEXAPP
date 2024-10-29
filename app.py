@@ -205,9 +205,14 @@ if roi is not None:
        # Função para exportar a imagem para um arquivo GeoTIFF
         def export_image(image, date):
             try:
+                # Verifique se a imagem possui bandas
+                if image.bandNames().size().getInfo() == 0:
+                    st.sidebar.error(f"Erro: A imagem selecionada para a data {date} não contém bandas.")
+                    return
+
                 # Tentativa de exportar a imagem inteira
-                url = image.select().getDownloadURL({
-                    'name': f'image{date}',                # Nome do arquivo
+                url = image.getDownloadURL({
+                    'name': f'image_{date}',                # Nome do arquivo
                     'scale': 20,                           # Define a escala
                     'crs': 'EPSG:4674',                    # Sistema de referência
                     'region': roi.geometry(),              # Define a região da ROI
@@ -225,11 +230,16 @@ if roi is not None:
         # Função para exportar a imagem dividida em tiles menores
         def export_image_by_tiles(image, date, tile_size=0.05):
             """Exportar imagem dividida em tiles menores para evitar exceder o limite de 50MB."""
-            # Calcular o tamanho do tile em função do tamanho máximo de 50 MB
-            grid = geemap.fishnet(roi, rows=5, cols=5)  # Gera uma grade para dividir a imagem
+            # Gera uma grade para dividir a imagem
+            grid = geemap.fishnet(roi, rows=5, cols=5)
             for idx, feature in enumerate(grid.getInfo()['features']):
                 tile_geometry = ee.Feature(feature).geometry()
                 try:
+                    # Verifique se o tile possui bandas antes de exportar
+                    if image.bandNames().size().getInfo() == 0:
+                        st.sidebar.warning(f"Tile {idx+1} não possui bandas e não será exportado.")
+                        continue
+
                     # Exportar cada tile individualmente
                     url = image.getDownloadURL({
                         'name': f'image_{date}_tile_{idx+1}',  # Nome do tile
