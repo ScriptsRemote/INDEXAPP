@@ -1,5 +1,5 @@
-earthengine-api==0.1.412
-geemap==0.1.412
+earthengine-api==0.1.412 
+geemap==0.32.1  
 geopandas==0.14.4
 pandas==2.2.2
 path==16.4.0
